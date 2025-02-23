@@ -1,20 +1,7 @@
-let counter = 0;
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
 
-const getData = () => {
-  //  calls an API and gets Data
-  console.log("Fetching Data....", counter++);
-}
-
-const deBounce = function (fn, d){
-  let timer;
-  return function () {
-    let context = this,
-    args = arguments;
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      fn.apply(context, args); // Pass the arguments to the function
-    }, d)
-  }
-}
-
-const betterFunction = deBounce(getData, 900);  // Create the debounced version
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);

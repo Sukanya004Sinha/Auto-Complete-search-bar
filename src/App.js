@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import './App.css';
+import './index.css';
 
 export default function App() {
   const [input,setInput] = useState("");
@@ -30,26 +30,40 @@ export default function App() {
   
   return (
     <div className="App">
-        <h1>Autocomplete Search Bar</h1>
+        <h1>Autocomplete Search Bar :-) </h1>
         <div>
-        <input type = "text"
-         className="search-input" 
-         value={input}
+        <input 
+          type="text"
+          className="search-input"
+          value={input}
           onChange={(e) => setInput(e.target.value)}
           onBlur={() => setShowResults(false)}
           onFocus={() => setShowResults(true)}
-           />
-           {showResults && (
-           <div className="result-container">
-           {results.map((r) =>
-            <span className= "result" key ={r.id }>{r.name}</span>
-  )}
-
-           </div>
-           )}
-            </div>
-      </div>
-
-
+          aria-label="Search for recipes"
+          role="combobox"
+          aria-expanded={showResults}
+          aria-autocomplete="list"
+          aria-controls="results-list"
+        />
+        {showResults && (
+          <div 
+            className="result-container"
+            id="results-list"
+            role="listbox"
+            aria-live="polite"
+          >
+            {results.map((r) => (
+              <span 
+                className="result" 
+                key={r.id} 
+                role="option"
+              >
+                {r.name}
+              </span>
+            ))}
+          </div>
+        )}
+        </div>
+    </div>
   );
 }
