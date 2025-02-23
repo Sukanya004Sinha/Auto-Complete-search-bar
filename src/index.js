@@ -1,17 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+let counter = 0;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const getData = () => {
+  //  calls an API and gets Data
+  console.log("Fetching Data....", counter++);
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const deBounce = function (fn, d){
+  let timer;
+  return function () {
+    let context = this,
+    args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(context, args); // Pass the arguments to the function
+    }, d)
+  }
+}
+
+const betterFunction = deBounce(getData, 900);  // Create the debounced version
